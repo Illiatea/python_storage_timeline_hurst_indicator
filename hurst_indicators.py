@@ -1,3 +1,7 @@
+# TODO: This file can be named "indicators.py", because from the module, which contains this file it is already
+#  clear, which type of indicators it is.
+# TODO: This file contains 9 easy style errors, which are displayed by PyCharm.
+# TODO: Comments can be placed BEFORE the function definition (function header).
 import numpy as np
 
 def hurst_1(data):
