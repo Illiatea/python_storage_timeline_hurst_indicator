@@ -1,6 +1,6 @@
-# python_storage_timeline_hurst_indicator
+# Python Storage.Timeline Hurst Indicator
 
 ## Installation
 ```
-pip install git+https://github.com/Illiatea/python_storage_timeline_hurst_indicator.git@main
+pip install git+https://github.com/pysyun/python_storage_timeline_hurst_indicator.git@main
 ```

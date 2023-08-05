@@ -1,2 +1,3 @@
-/hurst_indicators/
-/venv/
+venv
+.idea
+*.egg-info
