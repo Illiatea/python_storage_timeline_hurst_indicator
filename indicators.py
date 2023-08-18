@@ -1,14 +1,11 @@
-# TODO: This file can be named "indicators.py", because from the module, which contains this file it is already
-#  clear, which type of indicators it is.
-# TODO: This file contains 9 easy style errors, which are displayed by PyCharm.
-# TODO: Comments can be placed BEFORE the function definition (function header).
 import numpy as np
+
 
 def hurst_1(data):
     """Compute the Hurst Exponent for a given time series data."""
 
     # Compute the range of lag values
-    lags = range(2, len(data)//2)
+    lags = range(2, len(data) // 2)
     tau = [np.std(np.subtract(data[lag:], data[:-lag])) for lag in lags]
 
     # Calculate the slope of the log-log plot of the standard deviation versus lag
@@ -18,16 +15,19 @@ def hurst_1(data):
     hurst = m[0] / 2.0
     return hurst
 
+
+"""
+Calculates the Hurst exponent of the given data.
+
+Args:
+    data: A list of numbers.
+
+Returns:
+    The Hurst exponent.
+"""
+
+
 def hurst_2(data):
-    """
-      Calculates the Hurst exponent of the given data.
-
-      Args:
-        data: A list of numbers.
-
-      Returns:
-        The Hurst exponent.
-    """
     n = len(data)
     m = 0
     d = 0
@@ -37,19 +37,22 @@ def hurst_2(data):
             r += (data[i] - data[j]) ** 2
         m += r ** (1 / 2)
         d += r
-    H = (m / d) ** (1 / 2)
-    return H
+    h = (m / d) ** (1 / 2)
+    return h
+
+
+"""
+Calculate the Hurst exponent of a given time series data.
+
+Parameters:
+    data (numpy.ndarray): The input time series data.
+
+Returns:
+    float: The calculated Hurst exponent.
+"""
+
 
 def hurst_3(data):
-    """
-    Calculate the Hurst exponent of a given time series data.
-
-    Parameters:
-        data (numpy.ndarray): The input time series data.
-
-    Returns:
-        float: The calculated Hurst exponent.
-    """
     # Calculate the cumulative deviation from the mean
     deviations = np.cumsum(data - np.mean(data))
 
@@ -71,16 +74,19 @@ def hurst_3(data):
 
     return hurst_exponent
 
+
+"""
+Calculates the Hurst exponent of the given data.
+
+Args:
+    data: A list of numbers.     
+
+Returns:
+    The Hurst exponent.
+"""
+
+
 def hurst_4(data):
-    """
-    Calculates the Hurst exponent of the given data.
-
-    Args:
-      data: A list of numbers.
-
-    Returns:
-      The Hurst exponent.
-    """
     n = len(data)
 
     # Use the first approach for small data sets
@@ -93,8 +99,8 @@ def hurst_4(data):
                 r += (data[i] - data[j]) ** 2
             m += r ** (1 / 2)
             d += r
-        H = (m / d) ** (1 / 2)
-        return H
+        h = (m / d) ** (1 / 2)
+        return h
 
     # Use the second approach for larger data sets
     else:
@@ -109,19 +115,21 @@ def hurst_4(data):
         hurst = m[0] / 2.0
         return hurst
 
-def hurst_5(prices, max_lag=20):
-    """
-    Calculate the Hurst exponent using the R/S analysis method.
+
+"""
+Calculate the Hurst exponent using the R/S analysis method.
 
     Parameters:
         prices (array-like): The time series data for which the Hurst exponent is to be calculated.
         max_lag (int): The maximum lag value for the calculation. The default is 20.
 
     Returns:
-        hurst (float): The estimated Hurst exponent.
-    """
+        hurst (float): The estimated Hurst exponent.    
+"""
+
+
+def hurst_5(prices, max_lag=20):
     prices = np.asarray(prices)
-    n = len(prices)
     lags = range(2, max_lag)
     tau = [np.std(np.subtract(prices[lag:], prices[:-lag])) for lag in lags]
     hurst = np.polyfit(np.log(lags), np.log(tau), 1)[0]
