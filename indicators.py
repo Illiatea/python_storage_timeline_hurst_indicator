@@ -1,8 +1,11 @@
 import numpy as np
 
+"""
+Compute the Hurst Exponent for a given time series data.
+"""
+
 
 def hurst_1(data):
-    """Compute the Hurst Exponent for a given time series data."""
 
     # Compute the range of lag values
     lags = range(2, len(data) // 2)
