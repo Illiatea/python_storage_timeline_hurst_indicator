@@ -1,20 +1,24 @@
 class HurstProcessor:
 
-    def __init__(self, hurst_function):
+    def __init__(self, hurst_function, number_of_none_values):
+        self.number_of_none_values = number_of_none_values
         self.hurst_function = hurst_function
 
     def process(self, time_line):
 
+        data_for_calculation = []
         data = []
-        for d in time_line:
-            i = d['value']
-            data.append(float(i))
+        for value in time_line:
+            i = value['value']
+            data_for_calculation.append(float(i))
 
-        # Process the data using the provided Hurst indicator function
-        # TODO: Like for other indicators, this exponent is calculated for some frames of a given size.
-        # TODO: That is, calculated for N next or previous items for each time point.
-        hurst = self.hurst_function(data)
+            if len(data_for_calculation) <= self.number_of_none_values:
+                data.append(None)
+            else:
+                hurst = self.hurst_function(data)
+                data.append(hurst)
 
-        # TODO: The result should be a time-line as well. For each time moment (or almost for each) we can calculate
-        #  the Hurst exponent.
-        return hurst
+
+        result = [{'time': time_line[i]['time'], 'value': data[i]} for i in
+                  range(len(time_line))]
+        return result
