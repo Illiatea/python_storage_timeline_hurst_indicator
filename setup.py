@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='storage_timeline_hurst_indicator',
-    version='1.3',
+    version='1.4',
     author='Illiatea',
     author_email='illiatea2@gmail.com',
     install_requires=['numpy'],
