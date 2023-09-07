@@ -18,7 +18,6 @@ class HurstProcessor:
                 hurst = self.hurst_function(data)
                 data.append(hurst)
 
-
         result = [{'time': time_line[i]['time'], 'value': data[i]} for i in
                   range(len(time_line))]
         return result
